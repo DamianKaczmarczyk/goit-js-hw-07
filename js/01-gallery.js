@@ -9,7 +9,7 @@ console.log(galleryItems.length);
 function creatingGallery() {
   const items = [];
   for (let i = 0; i < galleryItems.length; i++) {
-    const newElementGalleryDiv = document.createElement("div");
+    const newElementGalleryDiv = document.createElement("li");
     newElementGalleryDiv.classList.add("gallery__item");
 
     const newElementGalleryA = document.createElement("a");
@@ -41,7 +41,10 @@ galleryList.addEventListener("click", (e) => {
     return;
   }
   const instance = basicLightbox.create(`
-    <img src= ${urlImg}>
+    <img src= ${urlImg}>,{
+      onShow: () => document.addEventListener('keydown', handleImgClose),
+      onclose: () => document.removeEventListener('keydown', handleImgClose),
+    }
 `);
 
   instance.show();

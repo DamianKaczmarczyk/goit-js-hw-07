@@ -24,8 +24,6 @@ for (let i = 0; i < galleryItems.length; i++) {
 }
 galleryList.insertAdjacentHTML("afterbegin", newElementGallery);
 
-const linka = document.querySelectorAll(".gallery__link");
-
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
