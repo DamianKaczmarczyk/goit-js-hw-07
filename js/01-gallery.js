@@ -32,13 +32,17 @@ function creatingGallery() {
 }
 creatingGallery();
 
-const linka = document.querySelectorAll(".gallery__link");
-
-galleryList.addEventListener("click", (handleImgClose) => {
-  handleImgClose.preventDefault();
-  const urlImg = handleImgClose.target.dataset.source;
+galleryList.addEventListener("click", (e) => {
+  e.preventDefault();
+  const urlImg = e.target.dataset.source;
   if (!urlImg) {
     return;
+  }
+
+  const handleImgClose = (e) => {
+    if (e.key === "Escape") {
+      instance.close();
+    }
   }
   const instance = basicLightbox.create(`
   <img src= ${urlImg}>`, {
@@ -48,9 +52,4 @@ galleryList.addEventListener("click", (handleImgClose) => {
 );
 
   instance.show();
-  document.addEventListener("keydown", (handleImgClose) => {
-    if (handleImgClose.key === "Escape") {
-      instance.close();
-    }
-  });
 });
